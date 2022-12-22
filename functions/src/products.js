@@ -28,6 +28,17 @@ export async function newProduct(req, res) {
   }
 }
 
+export async function createManyProducts(req, res){
+  const products = req.body
+  try {
+    await productList.insertMany(products)
+    await getAllProducts(req, res)
+  } catch (err) {
+    console.error(err)
+    res.status(500).json({error: err})
+  }
+}
+
 export async function getOneProduct(req, res) {
   const {productId} = req.params
   try {
