@@ -28,8 +28,12 @@ export async function newProduct(req, res) {
 }
 
 export async function getOneProduct(req, res) {
-  const filter = {productId}
+  const {productId} = req.params
   try {
-    
+    const product = await productList.find({_id: new ObjectId(productId)},productId).toArray()
+    res.status(200).json(product)
+  } catch (err) {
+    console.error(err)
+    res.status(500).json({error: err})
   }
 }
