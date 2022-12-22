@@ -26,3 +26,10 @@ export async function newProduct(req, res) {
     res.status(500).json({ error: err })
   }
 }
+
+export async function getOneProduct(req, res) {
+  const filter = {productId}
+  try {
+    
+  }
+}
