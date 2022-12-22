@@ -1,5 +1,6 @@
 import mongoSecrets from "./mongoSecrets.js";
 import { MongoClient, ObjectId } from "mongodb";
+import { RetweetOutlined } from "@ant-design/icons";
 const client = new MongoClient(mongoSecrets)
 
 const db = client.db("Products")
@@ -32,6 +33,17 @@ export async function getOneProduct(req, res) {
   try {
     const product = await productList.find({_id: new ObjectId(productId)},productId).toArray()
     res.status(200).json(product)
+  } catch (err) {
+    console.error(err)
+    res.status(500).json({error: err})
+  }
+}
+
+export async function findOneAndUpdate(req, res) {
+  const {productId} = req.params
+  try {
+    await productList.findOneAndUpdate({_id: new ObjectId(productId)}, {$set: req.body})
+    res.status(200).json(findOneAndUpdate)
   } catch (err) {
     console.error(err)
     res.status(500).json({error: err})
