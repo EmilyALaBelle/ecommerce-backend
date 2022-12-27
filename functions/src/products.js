@@ -1,6 +1,5 @@
 import mongoSecrets from "./mongoSecrets.js";
 import { MongoClient, ObjectId } from "mongodb";
-import { RetweetOutlined } from "@ant-design/icons";
 const client = new MongoClient(mongoSecrets)
 
 const db = client.db("Products")
@@ -58,5 +57,16 @@ export async function findOneAndUpdate(req, res) {
   } catch (err) {
     console.error(err)
     res.status(500).json({error: err})
+  }
+}
+
+export async function findDiscountedProducts(req, res) {
+  const filter = {"discountPercentage": {$gt:10}}
+  try {
+    const someProduct = await productList.find(filter).toArray()
+    res.status(200).json(someProduct)
+  } catch (err) {
+    console.error(err)
+    res.status(500).json({error:err})
   }
 }
