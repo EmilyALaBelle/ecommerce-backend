@@ -70,3 +70,48 @@ export async function findDiscountedProducts(req, res) {
     res.status(500).json({error:err})
   }
 }
+
+export async function findFragrances(req, res) {
+  const filter = {"category" : "fragrances"}
+  try {
+    const someFragrance = await productList.find(filter).toArray()
+    res.status(200).json(someFragrance)
+  } catch (err) {
+    console.error(err)
+    res.status(500).json({error:err})
+  }
+}
+
+export async function findLaptops(req, res) {
+  const filter = {"category": "laptops"}
+  try{
+  const someLaptop = await productList.find(filter).toArray()
+  res.status(200).json(someLaptop)
+  } catch (err) {
+    console.error(err)
+    res.status(500).json({error:err})
+  }
+}
+
+export async function findSkincare(req, res){
+  const filter = {"category": "skincare"}
+  try{
+    const someSkincare = await productList.find(filter).toArray()
+    res.status(200).json(someSkincare)
+  } catch (err) {
+    console.error(err)
+    res.status(500).json({error:err})
+  }
+}
+
+export async function findSmartphones(req, res){
+  const filter = {"category": "smartphones"}
+  try{
+    const someSmartphone = await productList.find(filter).toArray()
+    res.status(200).json(someSmartphone)
+  } catch (err) {
+    console.error(err)
+    res.status(500).json({error:err})
+  }
+}
+
